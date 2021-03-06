@@ -4,15 +4,15 @@ import random
 # Please read into the variables below the correct numbers. Use try and except to catch error.
 # a simple example would be:
 # hero_hp = int(input("how many hp does the hero have?"))
-
-try:
-    hero_hp = int(input("How many hp does the hero have? "))
-    dragon_hp = int(input("How many hp does the dragon have? "))
-    hero_max_dmg = int(input("What is the hero's maximum damage? "))
-    dragon_max_dmg = int(input("What is the dragon's maximum damage? "))
-except ValueError:
-    print("Please enter numbers only.")
-    exit()
+while True:
+    try:
+        hero_hp = int(input("How many hp does the hero have? "))
+        dragon_hp = int(input("How many hp does the dragon have? "))
+        hero_max_dmg = int(input("What is the hero's maximum damage? "))
+        dragon_max_dmg = int(input("What is the dragon's maximum damage? "))
+        break
+    except ValueError:
+        print("Please enter numbers only.")
 
 print("The dragon with", dragon_hp,
       "hp attacks our hero with", hero_hp, "hp")
@@ -20,12 +20,12 @@ print("The dragon with", dragon_hp,
 # add a While for an infinite block
 # here goes the while:
 while True:
-    dragon_attack = random.randint(1, dragon_max_dmg)
 
+    dragon_attack = random.randint(1, dragon_max_dmg)
     # here you need to update the hero hp, you need to subtract the damage that the dragon did
     # add code on this line
     hero_hp = hero_hp - dragon_attack
-    if hero_hp < 0:
+    if hero_hp < 0:  # the hero can't have less than 0 hp
         hero_hp = 0
     print("The dragon does", dragon_attack, "damage and the hero has", hero_hp, "hp left")
 
@@ -36,17 +36,15 @@ while True:
         break
 
     hero_attack = random.randint(1, hero_max_dmg)
-
     # here you need to update the dragon hp, you need to subtract the damage that the hero did
     # add code on this line
     dragon_hp = dragon_hp - hero_attack
-    if dragon_hp < 0:
+    if dragon_hp < 0:  # the dragon can't have less than 0 hp
         dragon_hp = 0
     print("The hero does", hero_attack, "damage and the dragon has", dragon_hp, "hp left")
 
     # add an if condition to check if the dragon was killed by the hero
     # here goes the if
-
     if dragon_hp <= 0:
         print("Our valiant hero has slain the dragon!")
         break
